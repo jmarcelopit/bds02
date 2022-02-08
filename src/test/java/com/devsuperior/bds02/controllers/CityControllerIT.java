@@ -36,7 +36,7 @@ public class CityControllerIT {
 		ResultActions result =
 				mockMvc.perform(get("/cities")
 					.contentType(MediaType.APPLICATION_JSON));
-
+ 
 		result.andExpect(status().isOk());
 		result.andExpect(jsonPath("$[0].name").value("Belo Horizonte"));
 		result.andExpect(jsonPath("$[1].name").value("Belém"));

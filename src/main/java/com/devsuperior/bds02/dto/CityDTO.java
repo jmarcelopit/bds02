@@ -1,14 +1,19 @@
 package com.devsuperior.bds02.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 import com.devsuperior.bds02.entities.City;
+import com.devsuperior.bds02.entities.Event;
 
 public class CityDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 	private String name;
+	private List<EventDTO> envents = new ArrayList<>();
 	
 	public CityDTO() {
 	}
@@ -21,6 +26,11 @@ public class CityDTO implements Serializable {
 	public CityDTO(City entity) {
 		id = entity.getId();
 		name = entity.getName();
+	}
+	
+	public CityDTO(City entity, Set<Event> events) {		
+		this(entity);
+		events.forEach(eve -> this.envents.add(new EventDTO(eve)));		
 	}
 
 	public Long getId() {
@@ -38,4 +48,12 @@ public class CityDTO implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public List<EventDTO> getEnvents() {
+		return envents;
+	}
+
+	
+	
+	
 }
